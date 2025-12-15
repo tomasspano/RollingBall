@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
         else if (other.gameObject.CompareTag("Trap"))
         {
             transform.position = spawn.position;
+            rb.AddForce(0, 0, 0, ForceMode.Impulse);
         }
         else if (other.gameObject.CompareTag("Victory"))
         {
