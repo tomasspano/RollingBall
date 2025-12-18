@@ -7,13 +7,14 @@ using Vector3 = UnityEngine.Vector3;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private float maxSpeed;
     [SerializeField] private Transform spawn;
-    [SerializeField] private LayerMask groundLayer;
     [SerializeField] float force;
     [SerializeField] float jumpForce;
     private Rigidbody rb;
     private Collider col;
     private bool isGrounded;
+    
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -39,7 +40,11 @@ public class Player : MonoBehaviour
         float v = Input.GetAxisRaw("Vertical");
         
         rb.AddForce(new Vector3(h, 0, v).normalized * force, ForceMode.Impulse);
-        
+
+        if (rb.linearVelocity.magnitude > maxSpeed)
+        {
+            rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
+        }
     }
 
     private void OnCollisionEnter(Collision other)

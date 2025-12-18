@@ -123,10 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57dde4abcfda1fd479aa15396603ba32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 20
   spawn: {fileID: 0}
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 64
   force: 0.3
   jumpForce: 4
 --- !u!54 &5239441113729098422
