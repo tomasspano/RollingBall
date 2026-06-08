@@ -48,15 +48,18 @@ public class Player : MonoBehaviour
 
     private void HandleMovement()
     {
+        //esta parte devuelve entre -1 y 1 para dirección
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         Vector3 inputDir = new Vector3(h, 0f, v).normalized;
 
+        //este es el modificador de las SizeTraps
         float scaledMax   = maxSpeed  * speedMultiplier;
         float scaledForce = force     * speedMultiplier;
 
+        //ignoramos la y para que el salto no afecte
         Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-        if (flatVel.magnitude < scaledMax)
+        if (flatVel.magnitude < scaledMax) //dejo de acelerar si llego al máximo
             rb.AddForce(inputDir * scaledForce, ForceMode.Force); 
         
         Vector3 clampedFlat = Vector3.ClampMagnitude(flatVel, scaledMax);
@@ -90,7 +93,7 @@ public class Player : MonoBehaviour
 
     private void Respawn()
     {
-        transform.position = rb.linearVelocity  = Vector3.zero; 
+        //transform.position = rb.linearVelocity  = Vector3.zero; 
         rb.linearVelocity  = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         transform.position = spawn.position;

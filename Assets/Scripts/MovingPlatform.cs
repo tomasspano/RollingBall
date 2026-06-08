@@ -1,33 +1,21 @@
 using UnityEngine;
 
-/// <summary>
-/// Moving platform that bounces back and forth along a direction.
-/// Implements ITrap — Activate() kicks off the movement.
-/// </summary>
-[RequireComponent(typeof(Rigidbody))]
 public class MovingPlatform : MonoBehaviour, ITrap
 {
-    [SerializeField] private float   speed           = 3f;
-    [SerializeField] private Vector3 movementDirection = Vector3.right;
-    [SerializeField] private float   timeToMove      = 2f;
+    [SerializeField] private float   speed = 3f;
+    [SerializeField] private Vector3 movementDirection;
+    [SerializeField] private float   timeToMove = 2f;
 
     private Rigidbody rb;
     private float     timer;
 
-    // ------------------------------------------------------------------ ITrap
     public void Activate()
     {
-        rb.isKinematic  = true; // kinematic so physics doesn't mess with the path
         rb.linearVelocity = movementDirection.normalized * speed;
     }
 
-    public void OnTrapTriggered(GameObject player)
-    {
-        // Moving platform doesn't harm the player directly.
-        // The danger is falling off — no extra logic needed.
-    }
+    public void OnTrapTriggered(GameObject player) {}
 
-    // ------------------------------------------------------------------ unity
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -45,9 +33,4 @@ public class MovingPlatform : MonoBehaviour, ITrap
         }
     }
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-            OnTrapTriggered(other.gameObject);
-    }
 }

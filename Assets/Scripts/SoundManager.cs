@@ -28,12 +28,15 @@ public class SoundManager : MonoBehaviour
 
     public void PlayMusic()
     {
+        //reproduzco y loopeo la música de fondo cuando empieza el nivel
         if (musicSource == null || musicClip == null) return;
         musicSource.clip = musicClip;
         musicSource.loop = true;
         musicSource.Play();
     }
 
+    //estos métodos se llaman en el manager dependiendo la condición de victoria o derrota
+    //o colisión o input
     public void PlayWin()      => PlaySFX(winClip);
     public void PlayLose()     => PlaySFX(loseClip);
     public void PlayTrapHit()  => PlaySFX(trapHitClip);
@@ -41,7 +44,6 @@ public class SoundManager : MonoBehaviour
 
     private void PlaySFX(AudioClip clip)
     {
-        if (sfxSource != null && clip != null)
-            sfxSource.PlayOneShot(clip);
+        sfxSource.PlayOneShot(clip);
     }
 }
