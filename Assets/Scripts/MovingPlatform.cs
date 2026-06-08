@@ -1,29 +1,53 @@
 using UnityEngine;
 
-public class MovingPlatform : MonoBehaviour
+/// <summary>
+/// Moving platform that bounces back and forth along a direction.
+/// Implements ITrap — Activate() kicks off the movement.
+/// </summary>
+[RequireComponent(typeof(Rigidbody))]
+public class MovingPlatform : MonoBehaviour, ITrap
 {
+    [SerializeField] private float   speed           = 3f;
+    [SerializeField] private Vector3 movementDirection = Vector3.right;
+    [SerializeField] private float   timeToMove      = 2f;
 
-    [SerializeField] private float speed;
-    [SerializeField] private Vector3 movementDirection;
-    [SerializeField] private float timeToMove;
-    private float timer;
-    
     private Rigidbody rb;
-    void Start()
+    private float     timer;
+
+    // ------------------------------------------------------------------ ITrap
+    public void Activate()
     {
-        rb = GetComponent<Rigidbody>();
+        rb.isKinematic  = true; // kinematic so physics doesn't mess with the path
         rb.linearVelocity = movementDirection.normalized * speed;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnTrapTriggered(GameObject player)
+    {
+        // Moving platform doesn't harm the player directly.
+        // The danger is falling off — no extra logic needed.
+    }
+
+    // ------------------------------------------------------------------ unity
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        Activate();
+    }
+
+    private void Update()
     {
         timer += Time.deltaTime;
         if (timer >= timeToMove)
         {
-            movementDirection = -movementDirection.normalized;
-            rb.linearVelocity = movementDirection.normalized * speed;
-            timer = 0;
+            movementDirection  = -movementDirection.normalized;
+            rb.linearVelocity  = movementDirection * speed;
+            timer = 0f;
         }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+            OnTrapTriggered(other.gameObject);
     }
 }
