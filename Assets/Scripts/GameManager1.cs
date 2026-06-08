@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager1 : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
+    public static GameManager1 Instance { get; private set; }
 
     [Header("Timer")]
     [SerializeField] private float levelTimeLimit = 120f; //2 minutos
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         if (timeRemaining <= 0f)
         {
             timeRemaining = 0f;
-            OnPlayerLose();
+            OnTimeout();
         }
     }
     public void OnLevelComplete()
@@ -44,13 +44,28 @@ public class GameManager : MonoBehaviour
         UIManager.Instance?.ShowWin();
     }
 
+    public void OnPlayerDied()
+    {
+        if (!gameActive) return;
+        EndGame();
+        SoundManager.Instance?.PlayLose();
+        UIManager.Instance?.ShowLose();
+    }
+
     public void RestartLevel()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private void OnPlayerLose()
+    public void LoadNextLevel()
+    {
+        Time.timeScale = 1f;
+        int next = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(next < SceneManager.sceneCountInBuildSettings ? next : 0);
+    }
+
+    private void OnTimeout()
     {
         EndGame();
         SoundManager.Instance?.PlayLose();

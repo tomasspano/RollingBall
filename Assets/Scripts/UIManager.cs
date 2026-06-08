@@ -26,15 +26,11 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        if (winRestartButton  != null) winRestartButton.onClick.AddListener(GameManager.Instance.RestartLevel);
-        if (loseRestartButton != null) loseRestartButton.onClick.AddListener(GameManager.Instance.RestartLevel);
-
         ShowHUD();
     }
 
     public void UpdateTimer(float timeRemaining)
     {
-        if (timerText == null) return;
         int minutes = Mathf.FloorToInt(timeRemaining / 60f);
         int seconds = Mathf.FloorToInt(timeRemaining % 60f);
         timerText.text = $"{minutes}:{seconds}";
@@ -54,6 +50,6 @@ public class UIManager : MonoBehaviour
 
     private static void SetActive(GameObject go, bool state)
     {
-        if (go != null) go.SetActive(state);
+        go.SetActive(state);
     }
 }
