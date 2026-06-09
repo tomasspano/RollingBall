@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     {
         rb  = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
+        
+        Cursor.visible = false;
     }
 
     private void Update()

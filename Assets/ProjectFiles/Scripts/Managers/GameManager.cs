@@ -63,5 +63,6 @@ public class GameManager : MonoBehaviour
     {
         gameActive     = false;
         Time.timeScale = 0f;
+        Cursor.visible = true;
     }
 }

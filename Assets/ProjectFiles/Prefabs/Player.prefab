@@ -273,9 +273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6cad1611fdeb449acf4779211069e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  maxSpeed: 10
-  force: 12
-  jumpForce: 10
+  maxSpeed: 8
+  force: 25
+  jumpForce: 8
   movementSmoothing: 0.15
   spawn: {fileID: 0}
   speedMultiplier: 1

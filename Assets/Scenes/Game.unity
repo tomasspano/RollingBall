@@ -3898,7 +3898,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -3913,7 +3913,7 @@ Transform:
   m_GameObject: {fileID: 954437025}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.92, y: 9.4, z: -197.3}
+  m_LocalPosition: {x: -13.92, y: 2.2, z: -197.3}
   m_LocalScale: {x: 1.2455, y: 1, z: 1.3118}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7173,17 +7173,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5271192014418717343, guid: ae3a2d7905a019346bb4157a1083f3e1, type: 3}
-      propertyPath: force
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5271192014418717343, guid: ae3a2d7905a019346bb4157a1083f3e1, type: 3}
       propertyPath: spawn
       value: 
       objectReference: {fileID: 1420268255}
-    - target: {fileID: 5271192014418717343, guid: ae3a2d7905a019346bb4157a1083f3e1, type: 3}
-      propertyPath: jumpForce
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 7214706857697680146, guid: ae3a2d7905a019346bb4157a1083f3e1, type: 3}
       propertyPath: m_Name
       value: Player
