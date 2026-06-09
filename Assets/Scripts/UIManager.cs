@@ -4,6 +4,7 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    //manejo de la interfaz
     public static UIManager Instance { get; private set; }
 
     [Header("HUD")]
@@ -31,6 +32,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateTimer(float timeRemaining)
     {
+        //redondea hacia abajo
         int minutes = Mathf.FloorToInt(timeRemaining / 60f);
         int seconds = Mathf.FloorToInt(timeRemaining % 60f);
         timerText.text = $"{minutes}:{seconds}";

@@ -94,6 +94,7 @@ public class Player : MonoBehaviour
 
     private void Respawn()
     {
+        //reseteo velocidad y escala
         rb.linearVelocity  = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         transform.position = spawn.position;

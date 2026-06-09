@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    //condiciones de victoria y derrota y manejo del nivel
     public static GameManager Instance { get; private set; }
 
     [Header("Timer")]
@@ -26,7 +27,8 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (!gameActive) return;
-
+    
+        //actualizo el tiempo constantemente y si se alcanza el límite se acaba la partida
         timeRemaining -= Time.deltaTime;
         UIManager.Instance?.UpdateTimer(timeRemaining);
 

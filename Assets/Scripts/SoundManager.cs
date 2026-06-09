@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    //maneja t0d0 lo relativo a audio
     public static SoundManager Instance { get; private set; }
 
     [Header("Sources")]

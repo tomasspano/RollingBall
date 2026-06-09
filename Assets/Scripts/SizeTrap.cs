@@ -6,11 +6,7 @@ public class SizeTrap : MonoBehaviour, ITrap
 
     [SerializeField] private float tweenDuration  = 0.35f;
 
-    [SerializeField] private float effectDuration = 4f;
-    
-    [SerializeField] private float cooldown = 6f;
-
-    private bool onCooldown = false;
+    [SerializeField] private float effectDuration = 3f;
 
     public void Activate()
     {
@@ -18,8 +14,6 @@ public class SizeTrap : MonoBehaviour, ITrap
 
     public void OnTrapTriggered(GameObject player)
     {
-        if (onCooldown) return;
-
         Player p = player.GetComponent<Player>();
         if (p == null) return;
 
@@ -35,7 +29,6 @@ public class SizeTrap : MonoBehaviour, ITrap
             p.speedMultiplier = 1f;
         });*/
 
-        StartCooldown();
     }
 
     private void Start() => Activate();
@@ -46,9 +39,4 @@ public class SizeTrap : MonoBehaviour, ITrap
             OnTrapTriggered(other.gameObject);
     }
 
-    private void StartCooldown()
-    {
-        onCooldown = true;
-        //DOVirtual.DelayedCall(cooldown, () => onCooldown = false);
-    }
 }
