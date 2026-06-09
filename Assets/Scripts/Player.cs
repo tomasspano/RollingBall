@@ -31,7 +31,8 @@ public class Player : MonoBehaviour
     {
         HandleJump();
     }
-
+    
+    //fixed update porque son físicas
     private void FixedUpdate()
     {
         HandleMovement();
@@ -93,7 +94,6 @@ public class Player : MonoBehaviour
 
     private void Respawn()
     {
-        //transform.position = rb.linearVelocity  = Vector3.zero; 
         rb.linearVelocity  = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         transform.position = spawn.position;
