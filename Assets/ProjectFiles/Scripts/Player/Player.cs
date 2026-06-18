@@ -57,22 +57,22 @@ public class Player : MonoBehaviour
         Vector3 inputDir = new Vector3(h, 0f, v).normalized;
 
         //este es el modificador de las SizeTraps
-        float scaledMax   = maxSpeed  * speedMultiplier;
-        float scaledForce = force     * speedMultiplier;
+        float scaledMax = maxSpeed * speedMultiplier;
+        float scaledForce = force * speedMultiplier;
 
         //ignoramos la y para que el salto no afecte
-        Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-        if (flatVel.magnitude < scaledMax) //dejo de acelerar si llego al máximo
-            rb.AddForce(inputDir * scaledForce, ForceMode.Force); 
+        Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z); 
+        rb.AddForce(inputDir * scaledForce, ForceMode.Force); 
         
+        //compruebo que mi velocidad no supera el máximo
         Vector3 clampedFlat = Vector3.ClampMagnitude(flatVel, scaledMax);
-
         Vector3 smoothedFlat = Vector3.Lerp(flatVel, clampedFlat, 1f - movementSmoothing);
         rb.linearVelocity = new Vector3(smoothedFlat.x, rb.linearVelocity.y, smoothedFlat.z);
     }
 
     private void OnCollisionEnter(Collision other)
     {
+        //comparador de tags con lo que colisiono
         if (other.gameObject.CompareTag("Floor"))
         {
             isGrounded = true;
@@ -81,6 +81,7 @@ public class Player : MonoBehaviour
         {
             Respawn();
             SoundManager.Instance?.PlayTrapHit();
+            GameManager.Instance.OnPlayerRespawn(); //sumo 10s
         }
         else if (other.gameObject.CompareTag("Victory"))
         {

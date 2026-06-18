@@ -65,4 +65,10 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.visible = true;
     }
+
+    public void OnPlayerRespawn()
+    {
+        timeRemaining += 10f;
+        if (timeRemaining >= levelTimeLimit) timeRemaining = levelTimeLimit;
+    }
 }

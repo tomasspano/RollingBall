@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class SizeTrap : MonoBehaviour, ITrap
@@ -17,17 +18,16 @@ public class SizeTrap : MonoBehaviour, ITrap
         Player p = player.GetComponent<Player>();
         if (p == null) return;
 
-        //player.transform.DOScale(Vector3.one * targetScale, tweenDuration)
-              //.SetEase(tweenEase);
+        player.transform.DOScale(Vector3.one * targetScale, tweenDuration)
+              .SetEase(Ease.InBounce);
 
         p.speedMultiplier = targetScale;
 
-        /*DOVirtual.DelayedCall(effectDuration, () =>
+        DOVirtual.DelayedCall(effectDuration, () =>
         {
-            if (player == null) return;
-            player.transform.DOScale(Vector3.one, tweenDuration).SetEase(tweenEase);
+            player.transform.DOScale(Vector3.one, tweenDuration).SetEase(Ease.OutBounce);
             p.speedMultiplier = 1f;
-        });*/
+        });
 
     }
 
