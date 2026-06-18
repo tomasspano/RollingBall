@@ -15,6 +15,7 @@ public class FalsePlatform : MonoBehaviour, ITrap
         if (triggered) return;
         triggered = true;
 
+        //invoco el método con un delay personalizado
         Invoke(nameof(Drop), fallDelay);
     }
 

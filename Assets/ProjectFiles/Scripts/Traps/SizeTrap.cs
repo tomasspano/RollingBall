@@ -21,6 +21,7 @@ public class SizeTrap : MonoBehaviour, ITrap
         player.transform.DOScale(Vector3.one * targetScale, tweenDuration)
               .SetEase(Ease.InBounce);
 
+        //el modificador de tamaño modifica la velocidad = 50% más grande, 50% más rápido
         p.speedMultiplier = targetScale;
 
         DOVirtual.DelayedCall(effectDuration, () =>

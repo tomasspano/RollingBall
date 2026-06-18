@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         HandleJump();
+        if (Input.GetKeyDown(KeyCode.R)) GameManager.Instance.RestartLevel();
     }
     
     //fixed update porque son físicas
